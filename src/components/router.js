@@ -3,9 +3,11 @@ import Home from "../router/home";
 import TV from "../router/tv";
 import Search from "../router/search";
 import detail from "../router/detail";
+import Header from "./header";
 
 export default () => (
   <Router>
+    <Header />
     <Switch>
       <Route path="/" exact component={Home}></Route>
       <Route path="/detail" exact component={detail}></Route>
