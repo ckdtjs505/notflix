@@ -1,6 +1,7 @@
 import Router from "./router";
 import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
+import "./api";
 
 const GlobalStyle = createGlobalStyle`
   ${reset};
