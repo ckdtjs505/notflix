@@ -4,12 +4,14 @@ import reset from "styled-reset";
 
 const GlobalStyle = createGlobalStyle`
   ${reset};
+  @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@600&display=swap');
   a{
     text-decoration:none;
     color:inherit;
   }
   body {
-    padding-top:50px
+    background-color:black;
+    padding-top:50px;
   }
 `;
 
