@@ -34,7 +34,7 @@ const HomeLink = styled(Link)`
 
 const Search = styled.input`
   margin-right: 1.5rem;
-`
+`;
 
 export default withRouter(({ location: { pathname } }) => (
   <Header>
@@ -48,12 +48,15 @@ export default withRouter(({ location: { pathname } }) => (
       <Item current={pathname === "/tv"}>
         <SLink to="/tv">TV프로그램</SLink>
       </Item>
-      <Item current={pathname === "/detail"}>
+      <Item current={pathname === "/movie"}>
+        <SLink to="/movie">영화</SLink>
+      </Item>
+      {/* <Item current={pathname === "/detail"}>
         <SLink to="/detail">detail</SLink>
       </Item>
       <Item current={pathname === "/search"}>
         <SLink to="/search">search</SLink>
-      </Item>
+      </Item> */}
     </List>
     <Search></Search>
   </Header>
