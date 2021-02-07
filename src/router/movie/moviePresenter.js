@@ -1,1 +1,1 @@
-export default () => <div>tv</div>;
+export default () => <div>movie</div>;

@@ -23,10 +23,11 @@ export const movieApi = {
   getSearch: (query, page = 1) =>
     api.get("search/movie", {
       params: {
-        query: encodeURIComponent(query),
+        query: query,
         page
       }
-    })
+    }),
+  getTrending: () => api.get("trending/movie/day")
 };
 
 export const tvApi = {
@@ -47,5 +48,6 @@ export const tvApi = {
         query: encodeURIComponent(query),
         page
       }
-    })
+    }),
+  getTrending: () => api.get("trending/tv/day")
 };
