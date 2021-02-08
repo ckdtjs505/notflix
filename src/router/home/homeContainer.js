@@ -1,5 +1,5 @@
 import React from "react";
-import HomePresenter from "./homePresenter";
+import HomePresenter from "./HomePresenter";
 
 export default class extends React.Component {
   constructor(props) {

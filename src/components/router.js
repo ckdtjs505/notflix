@@ -1,9 +1,9 @@
 import { BrowserRouter as Router, Route, Redirect, Switch } from "react-router-dom";
-import Home from "../router/home";
-import TV from "../router/tv";
-import Search from "../router/search";
-import Detail from "../router/detail";
-import Movie from "../router/movie";
+import Home from "../router/Home";
+import TV from "../router/TV";
+import Search from "../router/Search";
+import Detail from "../router/Detail";
+import Movie from "../router/Movie";
 import Header from "./header";
 
 export default () => (

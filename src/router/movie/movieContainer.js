@@ -1,5 +1,5 @@
 import React from "react";
-import MoviePresenter from "./moviePresenter";
+import MoviePresenter from "./MoviePresenter";
 import { movieApi } from "../../components/api";
 
 export default class extends React.Component {

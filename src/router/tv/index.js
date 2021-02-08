@@ -1,3 +1,3 @@
-import TvContainer from "./tvContainer";
+import TvContainer from "./TVContainer";
 
 export default TvContainer;
