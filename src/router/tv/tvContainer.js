@@ -1,15 +1,15 @@
 import React from "react";
-import TvPresenter from "./TVPresenter";
+import TVPresenter from "./TVPresenter";
 import { tvApi } from "../../components/api";
 
 export default class extends React.Component {
   state = {
-    loading: null,
+    loading: true,
     tvTopRated: null,
     tvPopular: null,
     tvAringToday: null,
     tvDetail: null,
-    error: false
+    error: ""
   };
 
   async componentDidMount() {
@@ -26,12 +26,11 @@ export default class extends React.Component {
       this.setState({
         tvTopRated,
         tvPopular,
-        tvAringToday,
-        loading: true
+        tvAringToday
       });
     } catch {
       this.setState({
-        error: true
+        error: "can't find TV list"
       });
     } finally {
       this.setState({
@@ -41,13 +40,14 @@ export default class extends React.Component {
   }
 
   render() {
-    const { loading, tvTopRated, tvPopular, tvAringToday } = this.state;
+    const { loading, tvTopRated, tvPopular, tvAringToday, error } = this.state;
     return (
-      <TvPresenter
+      <TVPresenter
         loading={loading}
         tvTopRated={tvTopRated}
         tvPopular={tvPopular}
         tvAringToday={tvAringToday}
+        error={error}
       />
     );
   }

@@ -4,13 +4,13 @@ import { movieApi } from "../../components/api";
 
 export default class extends React.Component {
   state = {
-    loading: null,
+    loading: true,
     movieNowPlaying: null,
     movieTopRated: null,
     moviePopular: null,
     movieUpComing: null,
     movieDetail: null,
-    error: false
+    error: ""
   };
 
   async componentDidMount() {
@@ -31,12 +31,11 @@ export default class extends React.Component {
         movieNowPlaying,
         movieTopRated,
         moviePopular,
-        movieUpComing,
-        loading: true
+        movieUpComing
       });
     } catch {
       this.setState({
-        error: true
+        error: "can't find movie"
       });
     } finally {
       this.setState({

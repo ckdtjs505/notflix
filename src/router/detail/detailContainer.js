@@ -6,9 +6,9 @@ export default class extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      loading: null,
+      loading: true,
       detail: null,
-      error: false
+      error: ""
     };
   }
 

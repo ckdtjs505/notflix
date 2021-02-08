@@ -10,7 +10,7 @@ export default class extends React.Component {
       searchTVResult: null,
       searchMovieResult: null,
       searchTerm: "바보",
-      error: false
+      error: ""
     };
   }
   componentDidMount() {
