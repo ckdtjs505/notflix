@@ -11,7 +11,8 @@ export default () => (
     <Header />
     <Switch>
       <Route path="/" exact component={Home}></Route>
-      <Route path="/search" exact component={Search}></Route>
+      <Route path="/search/:term" exact component={Search}></Route>
+      <Route path="/search" component={Search}></Route>
       <Route path="/tv/:id" exact component={Detail}></Route>
       <Route path="/tv" component={TV}></Route>
       <Route path="/movie/:id" component={Detail}></Route>

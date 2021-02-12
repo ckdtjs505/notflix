@@ -45,7 +45,14 @@ export default class extends React.Component {
   }
 
   render() {
-    const { loading, movieNowPlaying, movieTopRated, moviePopular, movieUpComing } = this.state;
+    const {
+      loading,
+      movieNowPlaying,
+      movieTopRated,
+      moviePopular,
+      movieUpComing,
+      error
+    } = this.state;
     return (
       <MoviePresenter
         loading={loading}
@@ -53,6 +60,7 @@ export default class extends React.Component {
         movieTopRated={movieTopRated}
         moviePopular={moviePopular}
         movieUpComing={movieUpComing}
+        error={error}
       />
     );
   }

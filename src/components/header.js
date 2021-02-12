@@ -1,4 +1,5 @@
 import { Link, withRouter } from "react-router-dom";
+import { SearchForm } from "./SearchTerm";
 import styled from "styled-components";
 
 const Header = styled.header`
@@ -32,11 +33,7 @@ const HomeLink = styled(Link)`
   color: red;
 `;
 
-const Search = styled.input`
-  margin-right: 1.5rem;
-`;
-
-export default withRouter(({ location: { pathname } }) => (
+export default withRouter(({ location: { pathname }, history }) => (
   <Header>
     <List>
       <Item current={pathname === "/"}>
@@ -51,13 +48,7 @@ export default withRouter(({ location: { pathname } }) => (
       <Item current={pathname === "/movie"}>
         <SLink to="/movie">영화</SLink>
       </Item>
-      {/* <Item current={pathname === "/detail"}>
-        <SLink to="/detail">detail</SLink>
-      </Item>
-      <Item current={pathname === "/search"}>
-        <SLink to="/search">search</SLink>
-      </Item> */}
     </List>
-    <Search></Search>
+    <SearchForm current={pathname} history={history}></SearchForm>
   </Header>
 ));

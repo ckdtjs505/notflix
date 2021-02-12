@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import Seaction from "../../components/Seaction";
 import Loader from "../../components/loader";
+import Error from "../../components/Message";
 
 const Container = styled.div`
   padding: 0px 25px;
@@ -44,6 +45,7 @@ const MoviePresenter = ({
           ))}
         </Seaction>
       )}
+      {error && <Error text={error}></Error>}
     </Container>
   );
 

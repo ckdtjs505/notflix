@@ -5,24 +5,21 @@ import { movieApi, tvApi } from "../../components/api";
 export default class extends React.Component {
   constructor(props) {
     super(props);
+    const {
+      match: {
+        params: { term }
+      }
+    } = props;
     this.state = {
-      loading: null,
+      loading: true,
       searchTVResult: null,
       searchMovieResult: null,
-      searchTerm: "바보",
+      searchTerm: term,
       error: ""
     };
   }
-  componentDidMount() {
-    this.handleSubmit();
-  }
 
-  handleSubmit = () => {
-    const { searchTerm } = this.state;
-    if (searchTerm !== "") this.searchByTerm();
-  };
-
-  searchByTerm = async () => {
+  componentDidMount = async () => {
     const { searchTerm } = this.state;
     this.setState({ loading: true });
     try {
@@ -46,17 +43,14 @@ export default class extends React.Component {
       });
     }
   };
-
   render() {
-    const { loading, searchTVResult, searchMovieResult, searchTerm, error } = this.state;
+    const { loading, searchTVResult, searchMovieResult, error } = this.state;
     return (
       <SearchPresenter
         loading={loading}
         searchTVResult={searchTVResult}
         searchMovieResult={searchMovieResult}
-        searchTerm={searchTerm}
         error={error}
-        handleSubmit={this.handleSubmit}
       />
     );
   }
