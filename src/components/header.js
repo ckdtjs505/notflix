@@ -3,7 +3,7 @@ import { SearchForm } from "./SearchTerm";
 import styled from "styled-components";
 
 const Header = styled.header`
-  background-color: rgba(10, 10, 10 0.5);
+  background-color: black;
   position: fixed;
   top: 0;
   bottom: 0;
@@ -13,6 +13,7 @@ const Header = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  z-index: 10;
 `;
 const List = styled.ul`
   display: flex;

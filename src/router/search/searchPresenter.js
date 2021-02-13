@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Loader from "../../components/loader";
 import Seaction from "../../components/Seaction";
 import Message from "../../components/Message";
+import Poster from "../../components/Poster";
 
 const Container = styled.div`
   padding: 0px 25px;
@@ -18,7 +19,15 @@ const SearchPresenter = ({ loading, searchTVResult, searchMovieResult, error }) 
         {searchMovieResult && searchMovieResult.length > 0 && (
           <Seaction title="MovieResult">
             {searchMovieResult.map(movie => (
-              <span key={movie.id}>{movie.title}</span>
+              <Poster
+                key={movie.id}
+                id={movie.id}
+                imageUrl={movie.poster_path}
+                title={movie.title}
+                rating={movie.vote_average}
+                year={movie.release_date.substring(0, 4)}
+                isMovie={true}
+              ></Poster>
             ))}
           </Seaction>
         )}
@@ -26,7 +35,15 @@ const SearchPresenter = ({ loading, searchTVResult, searchMovieResult, error }) 
         {searchTVResult && searchTVResult.length > 0 && (
           <Seaction title="TVResult">
             {searchTVResult.map(tv => (
-              <span key={tv.id}>{tv.name}</span>
+              <Poster
+                key={tv.id}
+                id={tv.id}
+                imageUrl={tv.poster_path}
+                title={tv.name}
+                rating={tv.vote_average}
+                year={tv.first_air_date.substring(0, 4)}
+                isMovie={false}
+              ></Poster>
             ))}
           </Seaction>
         )}

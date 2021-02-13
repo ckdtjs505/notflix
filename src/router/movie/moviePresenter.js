@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Seaction from "../../components/Seaction";
 import Loader from "../../components/loader";
 import Error from "../../components/Message";
+import Poster from "../../components/Poster";
 
 const Container = styled.div`
   padding: 0px 25px;
@@ -25,7 +26,15 @@ const MoviePresenter = ({
       {moviePopular && moviePopular.length > 0 && (
         <Seaction title="Popular">
           {moviePopular.map(movie => (
-            <span key={movie.id}>{movie.title}</span>
+            <Poster
+              key={movie.id}
+              id={movie.id}
+              imageUrl={movie.poster_path}
+              title={movie.title}
+              rating={movie.vote_average}
+              year={movie.release_date.substring(0, 4)}
+              isMovie={true}
+            ></Poster>
           ))}
         </Seaction>
       )}
@@ -33,7 +42,15 @@ const MoviePresenter = ({
       {movieTopRated && movieTopRated.length > 0 && (
         <Seaction title="TopRated">
           {movieTopRated.map(movie => (
-            <span key={movie.id}>{movie.title}</span>
+            <Poster
+              key={movie.id}
+              id={movie.id}
+              imageUrl={movie.poster_path}
+              title={movie.title}
+              rating={movie.vote_average}
+              year={movie.release_date.substring(0, 4)}
+              isMovie={true}
+            ></Poster>
           ))}
         </Seaction>
       )}
@@ -41,7 +58,15 @@ const MoviePresenter = ({
       {movieNowPlaying && movieNowPlaying.length > 0 && (
         <Seaction title="NowPlaying">
           {movieNowPlaying.map(movie => (
-            <span key={movie.id}>{movie.title}</span>
+            <Poster
+              key={movie.id}
+              id={movie.id}
+              imageUrl={movie.poster_path}
+              title={movie.title}
+              rating={movie.vote_average}
+              year={movie.release_date.substring(0, 4)}
+              isMovie={true}
+            ></Poster>
           ))}
         </Seaction>
       )}

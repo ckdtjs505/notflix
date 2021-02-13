@@ -12,7 +12,7 @@ const GlobalStyle = createGlobalStyle`
   }
   body {
     background-color:black;
-    padding-top:50px;
+    padding-top:100px;
     color : white;
   }
 `;

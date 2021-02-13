@@ -6,7 +6,9 @@ const Container = styled.div`
   margin-bottom: 2rem;
 `;
 const Title = styled.h3`
-  margin-bottom: 0.5rem;
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
 `;
 const Content = styled.div`
   display: grid;
