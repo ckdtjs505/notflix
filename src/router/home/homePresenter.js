@@ -4,7 +4,8 @@ import styled from "styled-components";
 import Loader from "../../components/loader";
 import Seaction from "../../components/Seaction";
 import Poster from "../../components/Poster";
-import { tvApi } from "../../components/api";
+import SwiperSeaction from "../../components/SwiperSeaction";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 const Container = styled.div`
   height: calc(100vh-50px);
@@ -48,6 +49,7 @@ const MainImg = styled.div`
 `;
 
 const HomePresenter = ({ loading, trendMovie, trendTV }) => {
+  const clickData = JSON.parse(localStorage.getItem("clickData"));
   return loading ? (
     <Loader />
   ) : (
@@ -61,38 +63,62 @@ const HomePresenter = ({ loading, trendMovie, trendTV }) => {
         </Description>
         <DetailButton>상세 정보</DetailButton>
 
-        {trendTV && trendTV.length > 0 && (
-          <Seaction title="TV 프로그램 인기 콘텐츠">
-            {trendTV.map(tv => (
-              <Poster
-                key={tv.id}
-                id={tv.id}
-                imageUrl={tv.poster_path}
-                title={tv.name}
-                rating={tv.vote_average}
-                year={tv.first_air_date.substring(0, 4)}
-                isMovie={false}
-              >
-                {tv.name}
-              </Poster>
+        {clickData && clickData.length > 0 && (
+          <SwiperSeaction title="최근에 콘텐츠">
+            {clickData.map(tv => (
+              <SwiperSlide>
+                <Poster
+                  key={tv.id}
+                  id={tv.id}
+                  imageUrl={tv.imageUrl}
+                  title={tv.title}
+                  rating={tv.rating}
+                  year={tv.year}
+                  isMovie={false}
+                >
+                  {tv.name}
+                </Poster>
+              </SwiperSlide>
             ))}
-          </Seaction>
+          </SwiperSeaction>
+        )}
+
+        {trendTV && trendTV.length > 0 && (
+          <SwiperSeaction title="TV 프로그램 트랜드">
+            {trendTV.map(tv => (
+              <SwiperSlide>
+                <Poster
+                  key={tv.id}
+                  id={tv.id}
+                  imageUrl={tv.poster_path}
+                  title={tv.name}
+                  rating={tv.vote_average}
+                  year={tv.first_air_date.substring(0, 4)}
+                  isMovie={false}
+                >
+                  {tv.name}
+                </Poster>
+              </SwiperSlide>
+            ))}
+          </SwiperSeaction>
         )}
 
         {trendMovie && trendMovie.length > 0 && (
-          <Seaction title="NowPlaying">
+          <SwiperSeaction title="영화 트랜드">
             {trendMovie.map(movie => (
-              <Poster
-                key={movie.id}
-                id={movie.id}
-                imageUrl={movie.poster_path}
-                title={movie.title}
-                rating={movie.vote_average}
-                year={movie.release_date.substring(0, 4)}
-                isMovie={true}
-              ></Poster>
+              <SwiperSlide>
+                <Poster
+                  key={movie.id}
+                  id={movie.id}
+                  imageUrl={movie.poster_path}
+                  title={movie.title}
+                  rating={movie.vote_average}
+                  year={movie.release_date.substring(0, 4)}
+                  isMovie={true}
+                ></Poster>
+              </SwiperSlide>
             ))}
-          </Seaction>
+          </SwiperSeaction>
         )}
       </Main>
     </Container>

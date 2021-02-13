@@ -49,29 +49,38 @@ const Year = styled.span`
   color: gray;
 `;
 
-const Poster = ({ id, imageUrl, title, rating, year, isMovie = false }) => (
-  <Link to={isMovie ? `/movie/${id}` : `/tv/${id}`}>
-    <Container>
-      <ImageContainer>
-        <Image
-          bgUrl={
-            imageUrl
-              ? `https://image.tmdb.org/t/p/w500/${imageUrl}`
-              : require("../assets/noimage.png")
-          }
-        ></Image>
-        <Rating>
-          <span role="img" aria-label="rating">
-            ✨
-          </span>{" "}
-          {rating}/10
-        </Rating>
-        <Title>{title}</Title>
-        <Year>{year}</Year>
-      </ImageContainer>
-    </Container>
-  </Link>
-);
+const clickHandle = props => {
+  let data = JSON.parse(localStorage.getItem("clickData"));
+  if (!Array.isArray(data) || data === null || data === undefined) data = [];
+  localStorage.setItem("clickData", JSON.stringify([props, ...data]));
+};
+
+const Poster = props => {
+  const { id, imageUrl, title, rating, year, isMovie = false } = props;
+  return (
+    <Link to={isMovie ? `/movie/${id}` : `/tv/${id}`} onClick={() => clickHandle(props)}>
+      <Container>
+        <ImageContainer>
+          <Image
+            bgUrl={
+              imageUrl
+                ? `https://image.tmdb.org/t/p/w500/${imageUrl}`
+                : require("../assets/noimage.png")
+            }
+          ></Image>
+          <Rating>
+            <span role="img" aria-label="rating">
+              ✨
+            </span>{" "}
+            {rating}/10
+          </Rating>
+          <Title>{title}</Title>
+          <Year>{year}</Year>
+        </ImageContainer>
+      </Container>
+    </Link>
+  );
+};
 
 Poster.propTypes = {
   id: PropTypes.number.isRequired,
