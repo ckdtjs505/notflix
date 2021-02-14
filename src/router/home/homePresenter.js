@@ -8,7 +8,7 @@ import SwiperSeaction from "../../components/SwiperSeaction";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 const Container = styled.div`
-  height: calc(100vh-50px);
+  height: calc(100vh - 50px);
   width: 100%;
 `;
 
@@ -39,7 +39,7 @@ const MainImg = styled.div`
   background-image: url("https://image.tmdb.org/t/p/original/ss6A2u6YiHTEWeVR01GtTUoO2Xj.jpg");
   position: absolute;
   top: 0;
-  height: 900px;
+  height: 100%;
   width: 100%;
   margin: auto;
   background-size: cover;

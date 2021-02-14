@@ -2,8 +2,6 @@ import React from "react";
 import HomePresenter from "./HomePresenter";
 import { movieApi, tvApi } from "../../components/api";
 
-movieApi.getTrending();
-
 export default class extends React.Component {
   constructor(props) {
     super(props);
