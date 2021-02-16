@@ -5,19 +5,23 @@ import Loader from "../../components/loader";
 import Seaction from "../../components/Seaction";
 import Message from "../../components/Message";
 import Poster from "../../components/Poster";
+import Helmet from "react-helmet";
 
 const Container = styled.div`
   padding: 0px 25px;
 `;
 
-const SearchPresenter = ({ loading, searchTVResult, searchMovieResult, error }) => {
-  if (loading) {
-    return <Loader></Loader>;
-  } else {
-    return (
+const SearchPresenter = ({ loading, searchTVResult, searchMovieResult, searchTerm, error }) => (
+  <>
+    <Helmet>
+      <title>Search | Notflix</title>
+    </Helmet>
+    {loading ? (
+      <Loader></Loader>
+    ) : (
       <Container>
         {searchMovieResult && searchMovieResult.length > 0 && (
-          <Seaction title="MovieResult">
+          <Seaction title={searchTerm + " : 영화 검색 결과"}>
             {searchMovieResult.map(movie => (
               <Poster
                 key={movie.id}
@@ -33,7 +37,7 @@ const SearchPresenter = ({ loading, searchTVResult, searchMovieResult, error }) 
         )}
 
         {searchTVResult && searchTVResult.length > 0 && (
-          <Seaction title="TVResult">
+          <Seaction title={searchTerm + " : TV 프로그램 검색 결과"}>
             {searchTVResult.map(tv => (
               <Poster
                 key={tv.id}
@@ -52,9 +56,9 @@ const SearchPresenter = ({ loading, searchTVResult, searchMovieResult, error }) 
           <Message text={"검색 결과가 없습니다"}></Message>
         )}
       </Container>
-    );
-  }
-};
+    )}
+  </>
+);
 
 SearchPresenter.propTypes = {
   searchTVResult: PropTypes.array,
