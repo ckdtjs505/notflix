@@ -1,4 +1,4 @@
-import Router from "./router";
+import Router from "./Router";
 import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
 import "./api";

@@ -72,6 +72,13 @@ const Cover = styled.div`
   margin-top: 80px;
   margin-left: 80px;
 `;
+
+const ButtonContainer = styled.div`
+  display: flex;
+`;
+
+const Button = styled.div``;
+
 const DetailPresenter = ({ loading, detail, error }) =>
   loading ? (
     <>
@@ -109,6 +116,13 @@ const DetailPresenter = ({ loading, detail, error }) =>
             </Item>
           </ItemContainer>
           <Overview>{detail.overview}</Overview>
+
+          <ButtonContainer>
+            <Button> 예고편(youtube videos) </Button>
+            <Button> Production Company </Button>
+            <Button> 만든 국가 </Button>
+            {/* 컬렉션 추가 */}
+          </ButtonContainer>
         </Data>
       </Contenxt>
     </Container>
