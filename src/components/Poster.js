@@ -52,7 +52,9 @@ const Year = styled.span`
 const clickHandle = props => {
   let data = JSON.parse(localStorage.getItem("clickData"));
   if (!Array.isArray(data) || data === null || data === undefined) data = [];
-  localStorage.setItem("clickData", JSON.stringify([props, ...data]));
+  if (data.includes(props)) return; // 중복데이터 저장 안함
+  const result = data.filter(ele => ele.id !== props.id);
+  localStorage.setItem("clickData", JSON.stringify([props, ...result]));
 };
 
 const Poster = props => {

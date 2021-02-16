@@ -6,6 +6,7 @@ import Poster from "../../components/Poster";
 import SwiperSeaction from "../../components/SwiperSeaction";
 import { SwiperSlide } from "swiper/react";
 import Helmet from "react-helmet";
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
   height: calc(100vh - 50px);
@@ -30,13 +31,19 @@ const Description = styled.div`
 
 const DetailButton = styled.button`
   background-color: gray;
+  color: white;
   width: 150px;
+  font-size: 1rem;
+  font-weight: 600;
+  height: 30px;
   margin-top: 1.2rem;
   margin-bottom: 1.5rem;
+  border-radius: 5px;
+  border: none;
 `;
 
 const MainImg = styled.div`
-  background-image: url("https://image.tmdb.org/t/p/original/ss6A2u6YiHTEWeVR01GtTUoO2Xj.jpg");
+  background-image: url(${props => props.bgImage});
   position: absolute;
   top: 0;
   height: 100%;
@@ -60,17 +67,21 @@ const HomePresenter = ({ loading, trendMovie, trendTV }) => {
         <Loader />
       ) : (
         <Container>
-          <MainImg bgUrl></MainImg>
           <Main>
-            <Title>원더 우먼</Title>
-            <Description>
-              이번 여행에선 무슨 일이 생길까. 대학은 어딜 선택할까. 사랑은 여전히 달콤하기만 하고.
-              날마다 두근두근, 라라 진의 인생. 하지만 내일은 어찌 될지, 아직은 모르는 일.
-            </Description>
-            <DetailButton>상세 정보</DetailButton>
-
+            {trendTV && trendTV.length > 0 && (
+              <>
+                <MainImg
+                  bgImage={`https://image.tmdb.org/t/p/original/${trendTV[0].backdrop_path}`}
+                ></MainImg>
+                <Title>{trendTV[0].name}</Title>
+                <Description>{trendTV[0].overview}</Description>
+                <Link to={`/tv/${trendTV[0].id}`}>
+                  <DetailButton o>상세 정보</DetailButton>
+                </Link>
+              </>
+            )}
             {clickData && clickData.length > 0 && (
-              <SwiperSeaction title="최근에 콘텐츠">
+              <SwiperSeaction title="최근에 본 콘텐츠">
                 {clickData.map(tv => (
                   <SwiperSlide>
                     <Poster

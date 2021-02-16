@@ -29,7 +29,7 @@ const MoviePresenter = ({
     ) : (
       <Container>
         {moviePopular && moviePopular.length > 0 && (
-          <Seaction title="Popular">
+          <Seaction title="영화 인기 콘텐츠">
             {moviePopular.map(movie => (
               <Poster
                 key={movie.id}
@@ -45,7 +45,7 @@ const MoviePresenter = ({
         )}
 
         {movieTopRated && movieTopRated.length > 0 && (
-          <Seaction title="TopRated">
+          <Seaction title="영화 TOP 25 콘텐츠">
             {movieTopRated.map(movie => (
               <Poster
                 key={movie.id}
@@ -61,7 +61,7 @@ const MoviePresenter = ({
         )}
 
         {movieNowPlaying && movieNowPlaying.length > 0 && (
-          <Seaction title="NowPlaying">
+          <Seaction title="지금 뜨는 콘텐츠">
             {movieNowPlaying.map(movie => (
               <Poster
                 key={movie.id}
