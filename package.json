@@ -30,6 +30,7 @@
       "react-app/jest"
     ]
   },
+  "homepage": "https://serene-murdock-96e6de.netlify.app/",
   "browserslist": {
     "production": [
       ">0.2%",
