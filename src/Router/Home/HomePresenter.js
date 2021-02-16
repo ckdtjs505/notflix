@@ -91,7 +91,7 @@ const HomePresenter = ({ loading, trendMovie, trendTV }) => {
                       title={tv.title}
                       rating={tv.rating}
                       year={tv.year}
-                      isMovie={false}
+                      isMovie={tv.isMovie}
                     >
                       {tv.name}
                     </Poster>

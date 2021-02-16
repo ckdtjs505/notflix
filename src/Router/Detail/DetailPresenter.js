@@ -110,7 +110,7 @@ const DetailPresenter = ({ loading, detail, error }) =>
   ) : (
     <Container>
       <Helmet>
-        <title>{detail.name ? detail.name : detail.title}</title>
+        <title>{detail.title ? detail.title : detail.name}</title>
       </Helmet>
       <Backdrop bgImage={`https://image.tmdb.org/t/p/original${detail.backdrop_path}`} />
       <Contenxt>
