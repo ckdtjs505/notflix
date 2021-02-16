@@ -3,6 +3,10 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import Loader from "../../components/loader";
 import Helmet from "react-helmet";
+import YouTube from "react-youtube";
+import { SwiperSlide } from "swiper/react";
+
+import SwiperSeaction from "../../components/SwiperSeaction";
 
 const Container = styled.div`
   height: calc(100vh - 50px);
@@ -59,6 +63,7 @@ const Overview = styled.p`
   opacity: 0.7;
   line-height: 1.5;
   width: 50%;
+  margin-bottom: 1rem;
 `;
 
 const Cover = styled.div`
@@ -78,6 +83,21 @@ const ButtonContainer = styled.div`
 `;
 
 const Button = styled.div``;
+
+const Homepage = styled.a`
+  margin-bottom: 1rem;
+  background-color: gray;
+  padding: 0.5rem;
+  border-radius: 2px;
+  display: inline-block;
+`;
+
+const Video = styled(YouTube)`
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  margin: auto;
+`;
 
 const DetailPresenter = ({ loading, detail, error }) =>
   loading ? (
@@ -115,14 +135,23 @@ const DetailPresenter = ({ loading, detail, error }) =>
                 )}
             </Item>
           </ItemContainer>
-          <Overview>{detail.overview}</Overview>
 
-          <ButtonContainer>
-            <Button> 예고편(youtube videos) </Button>
-            <Button> Production Company </Button>
-            <Button> 만든 국가 </Button>
-            {/* 컬렉션 추가 */}
-          </ButtonContainer>
+          {detail.homepage && (
+            <Homepage href={detail.homepage} target="_blank">
+              홈페이지 이동
+            </Homepage>
+          )}
+          <Overview>{detail.overview || "정보가 없습니다"}</Overview>
+
+          <SwiperSeaction perView="1">
+            {detail.videos &&
+              detail.videos.results.length > 0 &&
+              detail.videos.results.map(ele => (
+                <SwiperSlide>
+                  <Video videoId={ele.key}></Video>
+                </SwiperSlide>
+              ))}
+          </SwiperSeaction>
         </Data>
       </Contenxt>
     </Container>

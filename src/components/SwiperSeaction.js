@@ -15,12 +15,12 @@ const Title = styled.h3`
   margin-bottom: 1rem;
 `;
 
-const SwiperSeaction = ({ title, children }) => (
+const SwiperSeaction = ({ title, perView = 6, children }) => (
   <Container>
     <Title>{title}</Title>
     <Swiper
       spaceBetween={50}
-      slidesPerView={6}
+      slidesPerView={perView}
       onSlideChange={() => console.log("slide change")}
       onSwiper={swiper => console.log(swiper)}
       navigation
