@@ -21,7 +21,7 @@ const TVPresenter = ({ loading, tvTopRated, tvPopular, tvAringToday, error }) =>
             <Poster
               key={tv.id}
               id={tv.id}
-              imageUrl={tv.poster_path}
+              imageUrl={tv.backdrop_path}
               title={tv.name}
               rating={tv.vote_average}
               year={tv.first_air_date.substring(0, 4)}
@@ -39,7 +39,7 @@ const TVPresenter = ({ loading, tvTopRated, tvPopular, tvAringToday, error }) =>
             <Poster
               key={tv.id}
               id={tv.id}
-              imageUrl={tv.poster_path}
+              imageUrl={tv.backdrop_path}
               title={tv.name}
               rating={tv.vote_average}
               year={tv.first_air_date.substring(0, 4)}
@@ -57,7 +57,7 @@ const TVPresenter = ({ loading, tvTopRated, tvPopular, tvAringToday, error }) =>
             <Poster
               key={tv.id}
               id={tv.id}
-              imageUrl={tv.poster_path}
+              imageUrl={tv.backdrop_path}
               title={tv.name}
               rating={tv.vote_average}
               year={tv.first_air_date.substring(0, 4)}

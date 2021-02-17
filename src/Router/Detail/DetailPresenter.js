@@ -147,7 +147,7 @@ const DetailPresenter = ({ loading, detail, error }) =>
             {detail.videos &&
               detail.videos.results.length > 0 &&
               detail.videos.results.map(ele => (
-                <SwiperSlide>
+                <SwiperSlide key={ele.key}>
                   <Video videoId={ele.key}></Video>
                 </SwiperSlide>
               ))}

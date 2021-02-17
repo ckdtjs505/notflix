@@ -26,7 +26,8 @@ const Description = styled.div`
   width: 500px;
   z-index: 3;
   color: white;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
+  line-height: 2rem;
 `;
 
 const DetailButton = styled.button`
@@ -63,7 +64,6 @@ const HomePresenter = ({ loading, trendMovie, trendTV }) => {
       <Helmet>
         <title>Home | Notflix</title>
       </Helmet>
-
       {loading ? (
         <Loader />
       ) : (
@@ -84,7 +84,7 @@ const HomePresenter = ({ loading, trendMovie, trendTV }) => {
             {clickData && clickData.length > 0 && (
               <SwiperSeaction title="최근에 본 콘텐츠">
                 {clickData.map(tv => (
-                  <SwiperSlide>
+                  <SwiperSlide key={tv.id}>
                     <Poster
                       key={tv.id}
                       id={tv.id}
@@ -104,7 +104,7 @@ const HomePresenter = ({ loading, trendMovie, trendTV }) => {
             {trendTV && trendTV.length > 0 && (
               <SwiperSeaction title="TV 프로그램 트랜드">
                 {trendTV.map(tv => (
-                  <SwiperSlide>
+                  <SwiperSlide key={tv.id}>
                     <Poster
                       key={tv.id}
                       id={tv.id}
@@ -124,7 +124,7 @@ const HomePresenter = ({ loading, trendMovie, trendTV }) => {
             {trendMovie && trendMovie.length > 0 && (
               <SwiperSeaction title="영화 트랜드">
                 {trendMovie.map(movie => (
-                  <SwiperSlide>
+                  <SwiperSlide key={movie.id}>
                     <Poster
                       key={movie.id}
                       id={movie.id}

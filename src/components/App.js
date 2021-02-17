@@ -5,7 +5,7 @@ import "./api";
 
 const GlobalStyle = createGlobalStyle`
   ${reset};
-  @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@600&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
   a{
     text-decoration:none;
     color:inherit;
@@ -14,6 +14,7 @@ const GlobalStyle = createGlobalStyle`
     background-color:black;
     padding-top:100px;
     color : white;
+    
   }
 `;
 
