@@ -46,6 +46,7 @@ const MainImg = styled.div`
   background-image: url(${props => props.bgImage});
   position: absolute;
   top: 0;
+  right: 0;
   height: 100%;
   width: 100%;
   margin: auto;
