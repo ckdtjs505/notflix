@@ -2,12 +2,14 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import Popup from "reactjs-popup";
+import "reactjs-popup/dist/index.css";
 
 const Container = styled.div``;
 
 const Image = styled.div`
   background-image: url(${props => props.bgUrl});
-  height: 180px;
+  height: 100%;
   border-radius: 4px;
   background-size: cover;
   background-position: center center;
@@ -24,7 +26,8 @@ const Rating = styled.div`
 `;
 
 const ImageContainer = styled.div`
-  margin-bottom: 1rem;
+  height: 180px;
+  margin-bottom: 3.5rem;
   &:hover {
     ${Image} {
       opacity: 0.3;
@@ -57,30 +60,119 @@ const clickHandle = props => {
   localStorage.setItem("clickData", JSON.stringify([props, ...result]));
 };
 
+const CustomPopup = styled(Popup)`
+  /* background: none; */
+  &-content {
+    padding: 0px;
+    border: none;
+    background: none;
+  }
+`;
+
+const Modal = styled.div`
+  font-size: 12px;
+  background-color: black;
+  border-radius: 0.5rem;
+  border: none;
+  height: 700px;
+  width: 100%;
+`;
+
+const ModalCloase = styled.div`
+  cursor: pointer;
+  position: absolute;
+  display: block;
+  padding: 2px 5px;
+  line-height: 20px;
+  right: 5px;
+  top: 5px;
+  font-size: 24px;
+  background: black;
+  border-radius: 18px;
+  z-index: 2;
+`;
+
+const ModalHeader = styled.div`
+  width: 100%;
+  height: 620px;
+  font-size: 18px;
+  display: block;
+`;
+
+const ModalContent = styled.div`
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+  margin: 2rem;
+  margin-bottom: 5px;
+  width: 100%;
+  margin: auto;
+  z-index: 100;
+`;
+
+const ModalAction = styled.div`
+  align-items: center;
+  margin: 1rem;
+  text-align: center;
+`;
+
 const Poster = props => {
   const { id, imageUrl, title, rating, year, isMovie = false } = props;
   return (
-    <Link to={isMovie ? `/movie/${id}` : `/tv/${id}`} onClick={() => clickHandle(props)}>
-      <Container>
-        <ImageContainer>
-          <Image
-            bgUrl={
-              imageUrl
-                ? `https://image.tmdb.org/t/p/w500/${imageUrl}`
-                : require("../assets/noimage.png")
-            }
-          ></Image>
-          <Rating>
-            <span role="img" aria-label="rating">
-              ✨
-            </span>{" "}
-            {rating}/10
-          </Rating>
-          <Title>{title}</Title>
-          <Year>{year}</Year>
-        </ImageContainer>
-      </Container>
-    </Link>
+    <CustomPopup
+      trigger={
+        <Container>
+          <ImageContainer>
+            <Image
+              bgUrl={
+                imageUrl
+                  ? `https://image.tmdb.org/t/p/w500/${imageUrl}`
+                  : require("../assets/noimage.png")
+              }
+            ></Image>
+            <Rating>
+              <span role="img" aria-label="rating">
+                ✨
+              </span>{" "}
+              {rating}/10
+            </Rating>
+            <Title>{title}</Title>
+            <Year>{year}</Year>
+          </ImageContainer>
+        </Container>
+      }
+      modal
+      nested
+    >
+      {close => (
+        <Modal>
+          <ModalCloase onClick={close}>&times;</ModalCloase>
+          <ModalHeader>
+            <Image
+              bgUrl={
+                imageUrl
+                  ? `https://image.tmdb.org/t/p/w500/${imageUrl}`
+                  : require("../assets/noimage.png")
+              }
+            ></Image>
+          </ModalHeader>
+          <ModalContent>
+            <div style={{ fontSize: `2rem`, margin: "1rem" }}>{title}</div>
+            <ModalAction>
+              <Link
+                to={isMovie ? `/movie/${id}` : `/tv/${id}`}
+                onClick={() => {
+                  clickHandle(props);
+                  close();
+                }}
+              >
+                상세 정보
+              </Link>
+            </ModalAction>
+          </ModalContent>
+        </Modal>
+      )}
+    </CustomPopup>
   );
 };
 
