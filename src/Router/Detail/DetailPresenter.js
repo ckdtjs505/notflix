@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useRef } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import Loader from "../../components/loader";
+import Poster from "../../components/Poster";
+import Message from "../../components/Message";
 import Helmet from "react-helmet";
 import YouTube from "react-youtube";
 import { SwiperSlide } from "swiper/react";
@@ -29,6 +31,7 @@ const Backdrop = styled.div`
 `;
 
 const Contenxt = styled.div`
+  justify-content: center;
   display: flex;
   width: 100%;
   position: relative;
@@ -37,7 +40,7 @@ const Contenxt = styled.div`
 `;
 
 const Data = styled.div`
-  width: 60%;
+  width: 35%;
   margin-left: 10px;
   z-index: 1;
   margin-top: 80px;
@@ -62,12 +65,11 @@ const Overview = styled.p`
   font-size: 12px;
   opacity: 0.7;
   line-height: 1.5;
-  width: 50%;
   margin-bottom: 1rem;
 `;
 
 const Cover = styled.div`
-  width: 40%;
+  width: 35%;
   margin: 25px;
   background-image: url(${props => props.bgImage});
   background-position: center center;
@@ -78,11 +80,28 @@ const Cover = styled.div`
   margin-left: 80px;
 `;
 
+const ContainerPoster = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 15px;
+`;
+
 const ButtonContainer = styled.div`
   display: flex;
 `;
 
-const Button = styled.div``;
+const Button = styled.div`
+  margin-bottom: 1rem;
+  background-color: gray;
+  padding: 0.5rem;
+  border-radius: 2px;
+  display: inline-block;
+  margin-left: 1rem;
+
+  &:hover {
+    cursor: pointer;
+  }
+`;
 
 const Homepage = styled.a`
   margin-bottom: 1rem;
@@ -99,8 +118,30 @@ const Video = styled(YouTube)`
   margin: auto;
 `;
 
-const DetailPresenter = ({ loading, detail, error }) =>
-  loading ? (
+const handleButtonTap = (dom, taps) => {
+  // 컨텐트 모두 숨김
+  taps.forEach(ele => {
+    if (ele.dom && ele.dom.current) ele.dom.current.style.display = "none";
+  });
+  if (dom.title === "시즌" && dom.dom && dom.dom.current) {
+    dom.dom.current.style.display = "grid";
+  } else {
+    dom.dom.current.style.display = "block";
+  }
+};
+
+const DetailPresenter = ({ loading, detail, error }) => {
+  const video = useRef();
+  const season = useRef();
+  const overview = useRef();
+
+  const tap = [
+    { title: "설명", dom: overview },
+    { title: "예고편", dom: video },
+    { title: "시즌", dom: season }
+  ];
+
+  return loading ? (
     <>
       <Helmet>
         <title>loading...</title>
@@ -141,21 +182,53 @@ const DetailPresenter = ({ loading, detail, error }) =>
               홈페이지 이동
             </Homepage>
           )}
-          <Overview>{detail.overview || "정보가 없습니다"}</Overview>
 
-          <SwiperSeaction perView="1">
-            {detail.videos &&
-              detail.videos.results.length > 0 &&
-              detail.videos.results.map(ele => (
-                <SwiperSlide key={ele.key}>
-                  <Video videoId={ele.key}></Video>
-                </SwiperSlide>
+          {tap &&
+            tap.length > 0 &&
+            tap.map((ele, idx) => {
+              return (
+                <Button key={idx} onClick={() => handleButtonTap(ele, tap)}>
+                  {ele.title}
+                </Button>
+              );
+            })}
+
+          <Overview ref={overview}>{detail.overview || "정보가 없습니다"}</Overview>
+
+          <div ref={video} style={{ display: "none" }}>
+            <SwiperSeaction perView="1">
+              {detail.videos &&
+                detail.videos.results.length > 0 &&
+                detail.videos.results.map(ele => (
+                  <SwiperSlide key={ele.key}>
+                    <Video videoId={ele.key}></Video>
+                  </SwiperSlide>
+                ))}
+
+              {detail.videos.results.length === 0 && <div> 예고편이 없습니다</div>}
+            </SwiperSeaction>
+          </div>
+
+          <ContainerPoster ref={season} style={{ display: "none" }}>
+            {detail.seasons &&
+              detail.seasons.map(ele => (
+                <Poster
+                  key={ele.id}
+                  id={ele.id}
+                  imageUrl={ele.poster_path}
+                  title={ele.name}
+                  isMovie={false}
+                  isDetail={false}
+                >
+                  {ele.air_date}
+                </Poster>
               ))}
-          </SwiperSeaction>
+          </ContainerPoster>
         </Data>
       </Contenxt>
     </Container>
   );
+};
 
 DetailPresenter.propTypes = {
   detail: PropTypes.object,

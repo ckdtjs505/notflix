@@ -117,7 +117,7 @@ const ModalAction = styled.div`
 `;
 
 const Poster = props => {
-  const { id, imageUrl, title, rating, year, isMovie = false } = props;
+  const { id, imageUrl, title, rating, year, isMovie = false, isDetail = true } = props;
   return (
     <CustomPopup
       trigger={
@@ -158,17 +158,19 @@ const Poster = props => {
           </ModalHeader>
           <ModalContent>
             <div style={{ fontSize: `2rem`, margin: "1rem" }}>{title}</div>
-            <ModalAction>
-              <Link
-                to={isMovie ? `/movie/${id}` : `/tv/${id}`}
-                onClick={() => {
-                  clickHandle(props);
-                  close();
-                }}
-              >
-                상세 정보
-              </Link>
-            </ModalAction>
+            {isDetail ? (
+              <ModalAction>
+                <Link
+                  to={isMovie ? `/movie/${id}` : `/tv/${id}`}
+                  onClick={() => {
+                    clickHandle(props);
+                    close();
+                  }}
+                >
+                  상세 정보
+                </Link>
+              </ModalAction>
+            ) : null}
           </ModalContent>
         </Modal>
       )}
