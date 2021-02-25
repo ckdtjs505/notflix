@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import Loader from "../../components/loader";
 import Poster from "../../components/Poster";
-import Message from "../../components/Message";
 import Helmet from "react-helmet";
 import YouTube from "react-youtube";
 import { SwiperSlide } from "swiper/react";
@@ -84,10 +83,6 @@ const ContainerPoster = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   grid-gap: 15px;
-`;
-
-const ButtonContainer = styled.div`
-  display: flex;
 `;
 
 const Button = styled.div`
