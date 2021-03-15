@@ -5,7 +5,6 @@ import "./api";
 
 const GlobalStyle = createGlobalStyle`
   ${reset};
-  @import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
   a{
     text-decoration:none;
     color:inherit;
@@ -14,7 +13,7 @@ const GlobalStyle = createGlobalStyle`
     background-color:black;
     padding-top:100px;
     color : white;
-    
+    font-family: 'Jua', sans-serif;
   }
 `;
 
