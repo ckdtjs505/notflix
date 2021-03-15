@@ -6,7 +6,7 @@ import Detail from "../Router/Detail/index";
 import Movie from "../Router/Movie/index";
 import Header from "./header";
 
-export default () => (
+const Routers = () => (
   <Router>
     <Header />
     <Switch>
@@ -21,3 +21,5 @@ export default () => (
     </Switch>
   </Router>
 );
+
+export default Routers;

@@ -2,7 +2,7 @@ import React from "react";
 import HomePresenter from "./HomePresenter";
 import { movieApi, tvApi } from "../../components/api";
 
-export default class extends React.Component {
+class HomeContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -40,3 +40,5 @@ export default class extends React.Component {
     return <HomePresenter loading={loading} trendMovie={trendMovie} trendTV={trendTV} />;
   }
 }
+
+export default HomeContainer;

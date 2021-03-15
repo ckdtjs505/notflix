@@ -13,9 +13,10 @@ const Text = styled.div`
   font-size: 30px;
 `;
 
-export default () => (
+const Loading = () => (
   <Container>
-    {" "}
     <Text> Loading...</Text>
   </Container>
 );
+
+export default Loading;

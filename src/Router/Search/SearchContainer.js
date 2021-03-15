@@ -2,7 +2,7 @@ import React from "react";
 import SearchPresenter from "./SearchPresenter";
 import { movieApi, tvApi } from "../../components/api";
 
-export default class extends React.Component {
+class SearchContainer extends React.Component {
   constructor(props) {
     super(props);
     const {
@@ -56,3 +56,5 @@ export default class extends React.Component {
     );
   }
 }
+
+export default SearchContainer;

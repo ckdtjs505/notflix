@@ -2,7 +2,7 @@ import React from "react";
 import MoviePresenter from "./MoviePresenter";
 import { movieApi } from "../../components/api";
 
-export default class extends React.Component {
+class MovieContainer extends React.Component {
   state = {
     loading: true,
     movieNowPlaying: null,
@@ -65,3 +65,5 @@ export default class extends React.Component {
     );
   }
 }
+
+export default MovieContainer;

@@ -2,7 +2,7 @@ import React from "react";
 import TVPresenter from "./TVPresenter";
 import { tvApi } from "../../components/api";
 
-export default class extends React.Component {
+class TVContainer extends React.Component {
   state = {
     loading: true,
     tvTopRated: null,
@@ -52,3 +52,5 @@ export default class extends React.Component {
     );
   }
 }
+
+export default TVContainer;
