@@ -133,7 +133,7 @@ const Poster = props => {
             <Rating>
               <span role="img" aria-label="rating">
                 ✨
-              </span>{" "}
+              </span>
               {rating}/10
             </Rating>
             <Title>{title}</Title>

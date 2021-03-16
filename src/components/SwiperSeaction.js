@@ -69,6 +69,20 @@ const SwiperSeaction = ({ title, perView = 6, children, isSetting = false }) => 
       </Header>
 
       <Swiper
+        breakpoints={{
+          0: {
+            // width: 0,
+            slidesPerView: 1
+          },
+          640: {
+            // width: 768,
+            slidesPerView: perView / 2
+          },
+          1024: {
+            // width: 768,
+            slidesPerView: perView
+          }
+        }}
         spaceBetween={50}
         slidesPerView={perView}
         navigation={{

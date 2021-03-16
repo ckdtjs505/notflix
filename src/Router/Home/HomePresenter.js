@@ -22,7 +22,7 @@ const Title = styled.div`
 `;
 
 const Description = styled.div`
-  width: 500px;
+  width: 100%;
   z-index: 3;
   color: white;
   font-size: 1.2rem;
